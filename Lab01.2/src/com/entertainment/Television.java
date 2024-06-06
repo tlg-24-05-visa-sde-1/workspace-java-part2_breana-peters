@@ -2,7 +2,12 @@ package com.entertainment;
 
 import java.util.Objects;
 
-public class Television {
+
+
+// Note: To be "consistent with equals you must use the same sort key(s) as you are using in your equals and hash code methods
+//Natural order is defind by the brand (String) and then by volume
+//brand is our "sort key"
+public class Television implements Comparable<Television> {
      //Instance Variables
      private String brand;
      private int volume;
@@ -84,28 +89,22 @@ public class Television {
 
 
 
-//@Override
-//     public boolean equals(Object obj){
-//         boolean result = false;
-//
-//
-//         //check the obj is really referring to a Television object then we proceed
-//    // if (obj instanceofTelevision){ //IS A Check
-//         if(this.getClass() == obj.getClass() { // Are we the exact same type?
-//             //downcast 'obj' to more specific refrence type Television for getName(), getAge()
-//             Television other = (Television) obj;
-//
-//             // do the checks: business equality is defined as brand, volume
-//    result = Objects.equals(this.getBrand(), other.getBrand()) && // null safe check
-//            this.getVolume() == other.getVolume(); // primitives cant be
-//
-//         }
-//         // check that obj is really referring to a Television object
-//         return result;
-//
-//     }
 
-     @Override
+
+    //'size' (double) is our sort key
+    @Override
+    public int compareTo(Television other){
+         int result = this.getBrand().compareTo(other.getBrand());
+
+         if (result == 0){ // tied on brand, so break the tie based on volume
+             result = Integer.compare(this.getVolume(), other.getVolume());
+         }
+         return result;
+    }
+
+
+
+    @Override
      public String toString(){
          return String.format("%s: brand=%s , volume=%s, currentChannel =%s",
                  getClass().getSimpleName(), getBrand(), getVolume(),getCurrentChannel());
