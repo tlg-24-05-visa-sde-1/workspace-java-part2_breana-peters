@@ -8,14 +8,37 @@
  */
 package com.javatunes.product;
 
+import com.javatunes.billing.TaxCalculator;
+
 import java.util.Collection;
 
 public class Order {
     private String id;
+    private double cost;
+    private location location;
 
-    public Order(String id) {
+    public Order(String id, Location location) {
         this.id = id;
+        this.location = location;
     }
+
+    // We have three options to delegate to a TaxCalculator strategy:
+    // 1.direct instantiation (NOT a good option here)
+    /*
+    if (getLocation() == Location.USA)
+    new USATax(); ....
+
+    2.call out to a factory eg TaxCalculatorFactory and "ask" for it (passing indicators)
+    let some other party inject it into me and Ill store it in another field private TaxCalculator calc
+     */
+
+
+    public double getTax(){
+        TaxCalculator calc = TaxCalculatorFactory.getTaxCalculator();
+        return calc.taxAmount(getCost());
+    }
+
+
 
     /**
      * DONE:
@@ -35,4 +58,7 @@ public class Order {
     public String getId() {
         return id;
     }
+    private double getCost() {
+    }
+
 }
