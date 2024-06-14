@@ -6,22 +6,22 @@
  * We hope that it's useful to you.  Enjoy.
  * Copyright LearningPatterns Inc.
  */
-package com.entertainment;
+   package com.entertainment;
 
-public class InvalidChannelException extends Exception {
+    public class InvalidChannelException extends Exception {
 
-    public InvalidChannelException() {
+        public InvalidChannelException() {
+        }
+
+        public InvalidChannelException(String message) {
+            super(message);
+        }
+
+        public InvalidChannelException(Throwable cause) {
+            super(cause);
+        }
+
+        public InvalidChannelException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
-
-    public InvalidChannelException(String message) {
-        super(message);
-    }
-
-    public InvalidChannelException(Throwable cause) {
-        super(cause);
-    }
-
-    public InvalidChannelException(String message, Throwable cause) {
-        super(message, cause);
-    }
-}

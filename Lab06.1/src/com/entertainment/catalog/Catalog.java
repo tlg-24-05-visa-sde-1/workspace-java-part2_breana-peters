@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import com.entertainment.Television;
-
 public class Catalog {
     // in-memory catalog of Televisions
     private static final Collection<Television> catalog = new ArrayList<>(30);
@@ -45,9 +44,9 @@ public class Catalog {
      * with a corresponding collection of matching Televisions for that brand.
      * A no-brands-passed result should be an empty map (not null).
      */
-    public static Map<String,Collection<Television>> findByBrands(String... brands) {
+    public static Map<String, Collection<Television>> findByBrands(String... brands) {
         // create a bucket for results
-        Map<String,Collection<Television>> result = new HashMap<>();
+        Map<String, Collection<Television>> result = new HashMap<>();
 
         // perform the search and return the result
         // delegate to single-brand finder, store returned collection in map
@@ -63,15 +62,27 @@ public class Catalog {
      * NOTE: returning a direct reference to it has consequences!
      * A client can manipulate it, since it has a direct reference to it.
      * Sometimes this is okay, but not here.
-     * 
+     * <p>
      * DONE: change this to return a read-only view of the catalog.
-     * 
+     * <p>
      * You should explore the Javadoc for the java.util.Collections *class*.
      * This is an all-static utility class, not the java.util.Collection interface.
      */
     public static Collection<Television> getInventory() {
         return Collections.unmodifiableCollection(catalog);
     }
+
+    /**
+     * Returns entire catalog.
+     * NOTE: returning a direct reference to it has consequences!
+     * A client can manipulate it, since it has a direct reference to it.
+     * Sometimes this is okay, but not here.
+     * <p>
+     * DONE: change this to return a read-only view of the catalog.
+     * <p>
+     * You should explore the Javadoc for the java.util.Collections *class*.
+     * This is an all-static utility class, not the java.util.Collection interface.
+     */
 
     /*
      * Loads catalog.

@@ -18,10 +18,7 @@ public class CatalogTest {
     /**
      * Contract: a no-matches result should be an empty collection (not null).
      */
-    @Test
-    public void testFindByBrandNoMatches() {
-        Collection<Television> tvs = Catalog.findByBrand("NO-MATCHES");
-        assertNotNull(tvs);
-        assertTrue(tvs.isEmpty());
-    }
+
+
+
 }

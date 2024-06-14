@@ -1,30 +1,28 @@
 package com.duckrace;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-class DuckRacer {
-    //properties fields, instance variables
+class DuckRacer implements Serializable {
+    // properties, fields, instance variables
     private final int id;
     private String name;
-    private int wins;
-    private  final Collection<Reward> rewards = new ArrayList<>();
+    private final Collection<Reward> rewards = new ArrayList<>();
 
-    public DuckRacer(int id, String name){
+    // constructors
+    public DuckRacer(int id, String name) {
         this.id = id;
-       setName(name);
-
+        setName(name);
     }
 
-    // business or action methods
-    public void win(Reward reward){
+    // business or "action" methods
+    public void win(Reward reward) {
         rewards.add(reward);
     }
 
-
-    //accessor methods
-
+    // accessor methods
     public int getId() {
         return id;
     }
@@ -41,17 +39,14 @@ class DuckRacer {
         return rewards.size();
     }
 
-
-    //Note: return a read-only view if the rewards collection (client cant modify it!)
+    // NOTE: return a read-only view of the 'rewards' collection (client can't modify it!!)
     public Collection<Reward> getRewards() {
         return Collections.unmodifiableCollection(rewards);
     }
+
     @Override
-    public String toString(){
-        return String.format("%s: id=%s, name =%s, wins=%s, rewards=%s" ,
-                getClass() .getSimpleName(), getId(),getName(), getWins(),getRewards());
+    public String toString() {
+        return String.format("%s: id=%s, name=%s, wins=%s, rewards=%s",
+                getClass().getSimpleName(), getId(), getName(), getWins(), getRewards());
     }
-
-
-
 }
